@@ -191,84 +191,11 @@
     <section id="portfolio" class="portfolio section">
         <div class="container">
             <h2 class="section-title">My Works</h2>
-            <div class="portfolio-grid">
-                <!-- Video 1: Business -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/business.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Business Promo</h3>
-                        <p>A professional, clean edit focusing on corporate branding and messaging.</p>
-                    </div>
-                </div>
-                <!-- Video 2: Documentary 1 -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/documentary_1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Documentary Edit</h3>
-                        <p>Engaging storytelling that weaves interviews with powerful B-roll footage.</p>
-                    </div>
-                </div>
-                <!-- Video 3: Documentary 2 -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/documentary_2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Documentary Style 2</h3>
-                        <p>Deep dive narrative focused on human elements and atmospheric tone.</p>
-                    </div>
-                </div>
-                <!-- Video 4: Educational -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/educational.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Educational Content</h3>
-                        <p>Clear, engaging pacing optimized for maximum viewer retention and learning.</p>
-                    </div>
-                </div>
-                <!-- Video 5: Medical -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/medical.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Medical Overview</h3>
-                        <p>Clean, informative visuals tailored for the healthcare and technical industry.</p>
-                    </div>
-                </div>
-                <!-- Video 6: Podcast -->
-                <div class="portfolio-item glass-panel">
-                    <div class="video-container">
-                        <video class="portfolio-video" controls preload="metadata" playsinline poster="https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=800&q=80">
-                            <source src="videos/podcast.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Video Podcast</h3>
-                        <p>Multi-cam sync edit designed for YouTube distribution and social clips.</p>
-                    </div>
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Videos will be dynamically loaded here from Supabase -->
+                <div class="loading-videos" style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px; color: #fff;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <p>Loading Portfolio Videos...</p>
                 </div>
             </div>
         </div>
@@ -412,7 +339,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Chinmaya Handi. All rights reserved.</p>
+                <p>&copy; 2026 Chinmaya Handi. All rights reserved. | <a href="admin.html" style="color: var(--text-secondary); text-decoration: none;">Admin Panel</a></p>
             </div>
         </div>
     </footer>
@@ -448,6 +375,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
 
     <!-- Scripts -->
     <script src="script.js"></script>

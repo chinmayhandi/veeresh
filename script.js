@@ -232,4 +232,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 800);
         });
     });
+
+    // 5. Fetch and Render Supabase Portfolio Videos
+    async function fetchPortfolioVideos() {
+        const grid = document.getElementById('portfolio-grid');
+        if (!grid) return;
+
+        try {
+            // Check if Supabase is configured
+            if (typeof supabaseClient === 'undefined' || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                grid.innerHTML = `
+                    <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px;">
+                        <h3 style="color: var(--accent-red); margin-bottom: 10px;">Supabase Not Configured</h3>
+                        <p style="color: #ccc;">Please configure your Supabase URL and Key in <code>supabase-config.js</code> to load videos.</p>
+                    </div>`;
+                return;
+            }
+
+            const { data: videos, error } = await supabaseClient
+                .from('videos')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            if (!videos || videos.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px;">
+                        <p style="color: #ccc;">No videos available yet. Admin needs to upload some!</p>
+                    </div>`;
+                return;
+            }
+
+            // Render videos
+            grid.innerHTML = videos.map(video => `
+                <div class="portfolio-item glass-panel">
+                    <div class="video-container">
+                        <video class="portfolio-video" controls preload="metadata" playsinline ${video.poster_url ? `poster="${video.poster_url}"` : ''}>
+                            <source src="${video.video_url}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>${video.title}</h3>
+                        ${video.description ? `<p>${video.description}</p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+        } catch (err) {
+            console.error('Error fetching videos:', err);
+            grid.innerHTML = `
+                <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px;">
+                    <p style="color: var(--accent-red);">Failed to load portfolio videos. Please try again later.</p>
+                </div>`;
+        }
+    }
+
+    // Initialize fetch
+    fetchPortfolioVideos();
+
 });

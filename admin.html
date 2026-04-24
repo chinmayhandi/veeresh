@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - VideoPro Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS (Reusing existing variables) -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        .form-group input[type="file"] {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="dark-theme bg-darker">
+
+    <div class="container admin-container glass-panel">
+        <h2 class="section-title" style="margin-bottom: 20px;">Admin Panel</h2>
+        
+        <!-- Auth View -->
+        <div id="auth-view">
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">Log in to manage your portfolio videos.</p>
+            <form id="login-form" class="contact-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn" style="width: 100%; justify-content: center;">Log In</button>
+                <div id="auth-error" class="form-message error" style="text-align: center; margin-top: 15px;"></div>
+            </form>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h3>Upload New Video</h3>
+                <button id="logout-btn" class="btn btn-secondary" style="padding: 8px 15px; font-size: 0.8rem;">Logout</button>
+            </div>
+
+            <form id="upload-form" class="contact-form">
+                <div class="form-group">
+                    <label>Video Title</label>
+                    <input type="text" id="video-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <textarea id="video-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Video File (.mp4 only)</label>
+                    <input type="file" id="video-file" accept="video/mp4" required>
+                </div>
+                <button type="submit" id="upload-btn" class="btn btn-primary submit-btn" style="width: 100%; justify-content: center;">Upload Video</button>
+                
+                <div id="upload-progress" style="margin-top: 15px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; display: none;">
+                    <div id="progress-bar" style="height: 100%; width: 0%; background: var(--success); border-radius: 4px; transition: width 0.3s;"></div>
+                </div>
+                <div id="upload-message" class="form-message" style="text-align: center; margin-top: 15px;"></div>
+            </form>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <!-- Admin Script -->
+    <script src="admin.js"></script>
+</body>
+</html>
